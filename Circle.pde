@@ -3,26 +3,38 @@ class Circle {
   float y;
   float xSpeed;
   float ySpeed;
-  int radius;
+  int radius = 20;
   color circleColor;
-  
-//  circle = new Circle(random(width), random(height), random(-3, 3), random(-3, 3), 50);
-  Circle(float x, float y, float xSpeed, float ySpeed, int radiusCircle, color circleColor) {
+  color rectColor;
+ 
+
+  Circle(float x, float y, float xSpeed, float ySpeed, int radius) {
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-    radius = radiusCircle;
+    this.radius = radius;
   }
-  
-    Circle(float x, float y, float xSpeed, float ySpeed,  color circleColor) {
+  Circle(float x, float y, float xSpeed, float ySpeed){
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-    this.radius = 20;
+
   }
-  void move() {
+
+  void moveCircle() {
+    x += xSpeed;
+    if (x < 0 || x > width) {
+      xSpeed *= -1;
+    }
+
+    y += ySpeed;
+    if (y < 0 || y > height) {
+      ySpeed *= -1;
+    }
+  }
+    void moveRectangle() {
     x += xSpeed;
     if (x < 0 || x > width) {
       xSpeed *= -1;
@@ -34,8 +46,13 @@ class Circle {
     }
   }
   
-  void display(){
+  void displayCircle(){
    fill(circleColor);
-   ellipse(x, y, radius, radius); 
+   ellipse(x, y, radius, radius);  
+  }
+  void displayRectangle(){
+    fill(rectColor);
+    rect(x, y, radius, radius);
+
   }
 }
